@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Thao tác bằng JQuerry</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+	<!-- jQuerry lib -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+
+	<script type="text/javascript">
+		var dataList = [
+			{
+				'thumbnail' : '1.jfif',
+				'title': 'Red bull',
+				'price': '10000'
+			},
+			{
+				'thumbnail' : '2.jpg',
+				'title': 'Fanta',
+				'price': '10000'
+			},
+			{
+				'thumbnail' : '3.jpg',
+				'title': 'Coca cola',
+				'price': '10000'
+			},
+			{
+				'thumbnail' : '4.jpg',
+				'title': 'Sprite',
+				'price': '10000'
+			}
+		]
+
+		cardItems = []
+
+		$(function(){
+			loadData()
+		})
+
+		function loadData() {
+			for (var i = 0; i < dataList.length; i++) {
+				$('#product_item').append(`<div class="col-md-3" onclick="clickItem(${i})" style="cursor: pointer">
+						<img src="${dataList[i].thumbnail}" style="width: 100%" >
+						<p style="text-align: center">${dataList[i].title}</p>
+						<p style="text-align: center">${dataList[i].price} VND</p>
+					</div>`)
+			}
+		}
+
+		function clickItem(index) {
+			var count = 0;
+			console.log(index)
+			if(cardItems[index] === undefined) {
+				cardItems[index] = {
+					'thumbnail': dataList[index].thumbnail,
+					'title': dataList[index].title,
+					'price': dataList[index].price,
+					'number': 1,
+					
+				}
+			} else {
+				cardItems[index].number++
+			}
+			console.log(cardItems)
+			$('#cardList').empty()
+			$('#total_price').empty()
+			for (var i = 0; i < cardItems.length; i++) {
+				p = cardItems[i]
+				if(p === undefined) continue;
+				$('#cardList').append(`<tr>
+							<td>${count++}</td>
+							<td><img src="${p.thumbnail}" width="100px" ></td>
+							<td>${p.title}</td>
+							<td>${p.number}</td>
+							<td>${p.price}</td>
+							<td>${p.price * p.number}</td>
+							
+						</tr>`)
+				$('#total_price').append(`<tr>
+							<td> </td>
+						</tr>`)
+			}
+			
+			
+				
+				
+			
+
+		}
+
+	</script>
+
+</head>
+<body>
+	<!-- Grey with black text -->
+		<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+		  <ul class="navbar-nav">
+		    <li class="nav-item active">
+		      <a class="nav-link" href="#">Active</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" href="#">Link</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" href="#">Link</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link disabled" href="#">Disabled</a>
+		    </li>
+		  </ul>
+		</nav>
+
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-5">
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>STT</th>
+							<th>Image</th>
+							<th>Title</th>
+							<th>Num</th>
+							<th>Price</th>
+							<th>Total Price</th>
+						</tr>
+					</thead>
+					<tbody id="cardList">
+
+					</tbody>
+					<tfoot id="total_price">
+						
+					</tfoot>
+				</table>
+			</div>
+			<div class="col-md-7">
+				<div class="row" id="product_item">
+
+				</div>
+			
+		</div>
+	</div>
+
+
+</body>
+</html>
