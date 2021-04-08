@@ -84,10 +84,24 @@
 							<td>${p.number}</td>
 							<td>${p.price}</td>
 							<td>${p.price * p.number}</td>
-						</tr>`)
-				
+						</tr>`)		
+			}
+			
+			var totalPrice = 0;
+			
+			for(var item of cardItems) {
+				totalPrice += parseInt(item.price * item.number)
 				
 			}
+
+			$('#total_price').append(`<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>Tổng Giá tiền</td>
+							<td>${totalPrice} VND</td>
+						</tr>`)
 		}
 
 	</script>
@@ -113,8 +127,8 @@
 		</nav>
 
 	
-	<div class="container-fluid">
-		<div class="row">
+	<div class="container-fluid" >
+		<div class="row" >
 			<div class="col-md-5">
 				<table class="table table-hover table-bordered">
 					<thead>
